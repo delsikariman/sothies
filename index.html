@@ -370,6 +370,49 @@
     .contact-grid { grid-template-columns: 1fr; }
   }
 
+  /* GALERI MENU */
+  .galeri-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.2rem; margin-top: 2.5rem;
+  }
+  .galeri-card {
+    background: white; border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(45,106,79,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .galeri-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(45,106,79,0.18); }
+  .galeri-label {
+    padding: 0.7rem 1rem;
+    font-weight: 700; font-size: 0.85rem;
+    color: var(--green);
+    border-bottom: 1px solid var(--green-pale);
+    background: white;
+  }
+  .galeri-card img {
+    width: 100%; display: block;
+    object-fit: cover;
+  }
+
+  /* TABS */
+  .menu-tabs {
+    display: flex; gap: 0.8rem; margin: 2rem 0 0;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    padding: 0.65rem 1.5rem; border-radius: 50px;
+    border: 2px solid var(--green);
+    background: transparent; color: var(--green);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .tab-btn.active, .tab-btn:hover {
+    background: var(--green); color: white;
+  }
+  .tab-content { margin-top: 1.5rem; }
+
   /* SCROLL REVEAL */
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -428,33 +471,149 @@
   <div class="container">
     <p class="section-label reveal">✦ Menu Pilihan</p>
     <h2 class="section-title reveal">Minuman Favorit<br>Pelanggan Kami</h2>
-    <p class="section-sub reveal">Dibuat dari buah segar asli, tanpa gula tambahan, langsung bikin segar dan kenyang.</p>
-    <div class="menu-grid">
+    <p class="section-sub reveal">Dibuat dari buah segar asli, stevia only, langsung bikin segar dan kenyang.</p>
+
+    <!-- TABS -->
+    <div class="menu-tabs reveal">
+      <button class="tab-btn active" onclick="switchTab('cup', this)">🥤 Menu In Cup</button>
+      <button class="tab-btn" onclick="switchTab('bowl', this)">🥣 Menu In Bowl</button>
+    </div>
+
+    <!-- IN CUP -->
+    <div id="tab-cup" class="menu-grid tab-content">
       <div class="menu-card reveal">
         <div class="menu-tag">🔥 Best Seller</div>
         <span class="menu-emoji">🫐</span>
-        <div class="menu-name">Mix Berry Crush</div>
-        <p class="menu-desc">Perpaduan blueberry, strawberry, dan raspberry yang kaya antioksidan. Warna cantik, rasa juara.</p>
-        <span class="menu-price">Mulai 25k</span>
-      </div>
-      <div class="menu-card reveal">
-        <div class="menu-tag">⭐ Favorit</div>
-        <span class="menu-emoji">🍊</span>
-        <div class="menu-name">Ruby Red Citrus</div>
-        <p class="menu-desc">Jeruk merah segar dengan sentuhan asam manis yang pas. Kaya vitamin C, segar di tenggorokan.</p>
-        <span class="menu-price">Mulai 13k</span>
-      </div>
-      <div class="menu-card reveal">
-        <span class="menu-emoji">🌴</span>
-        <div class="menu-name">Summer Paradise Bowl</div>
-        <p class="menu-desc">Smoothie bowl mangga & pisang dengan topping buah segar. Bikin kenyang, cocok buat sarapan.</p>
-        <span class="menu-price">Mulai Rp 20.000</span>
+        <div class="menu-name">Mixberry Crush</div>
+        <p class="menu-desc">Blueberry, Strawberry, Milk, Yogurt · 500ml | 157 cal</p>
+        <span class="menu-price">Rp25.000</span>
       </div>
       <div class="menu-card reveal">
         <span class="menu-emoji">🍓</span>
         <div class="menu-name">Strawberry Slurpee</div>
-        <p class="menu-desc">Smoothies strawberry murni yang lembut dan creamy. Rasa aslinya bikin ketagihan.</p>
-        <span class="menu-price">Mulai Rp 13.000</span>
+        <p class="menu-desc">Strawberry, Nata de coco · 500ml | 59 cal</p>
+        <span class="menu-price">Rp15.000</span>
+      </div>
+      <div class="menu-card reveal">
+        <span class="menu-emoji">🍉</span>
+        <div class="menu-name">Ruby Red Citrus</div>
+        <p class="menu-desc">Watermelon, Citrus · 500ml | 109 cal</p>
+        <span class="menu-price">Rp13.000</span>
+      </div>
+      <div class="menu-card reveal">
+        <span class="menu-emoji">🍍</span>
+        <div class="menu-name">Sunset Citrus</div>
+        <p class="menu-desc">Pineapple, Citrus · 500ml | 106 cal</p>
+        <span class="menu-price">Rp13.000</span>
+      </div>
+      <div class="menu-card reveal">
+        <span class="menu-emoji">🍊</span>
+        <div class="menu-name">Orange Himalayan</div>
+        <p class="menu-desc">Orange, Himalayan Salt · 500ml | 133 cal</p>
+        <span class="menu-price">Rp9.000</span>
+      </div>
+      <div class="menu-card reveal">
+        <span class="menu-emoji">🐉</span>
+        <div class="menu-name">Purple Harmony</div>
+        <p class="menu-desc">Dragonfruit, Banana, Strawberry, Milk, Yogurt · 500ml | 183 cal</p>
+        <span class="menu-price">Rp18.000</span>
+      </div>
+      <div class="menu-card reveal">
+        <span class="menu-emoji">🍫</span>
+        <div class="menu-name">Banana Choco Dream</div>
+        <p class="menu-desc">Banana, Dark Chocolate Powder, Milk, Yogurt · 500ml | 224 cal</p>
+        <span class="menu-price">Rp18.000</span>
+      </div>
+      <div class="menu-card reveal">
+        <span class="menu-emoji">🌙</span>
+        <div class="menu-name">Arabian Style</div>
+        <p class="menu-desc">Banana, Dates, Cinnamon Powder, Milk · 500ml | 264 cal</p>
+        <span class="menu-price">Rp18.000</span>
+      </div>
+      <div class="menu-card reveal">
+        <span class="menu-emoji">🩷</span>
+        <div class="menu-name">Pink Power</div>
+        <p class="menu-desc">Banana, Strawberry, Milk, Yogurt · 500ml | 187 cal</p>
+        <span class="menu-price">Rp18.000</span>
+      </div>
+      <div class="menu-card reveal">
+        <span class="menu-emoji">🥑</span>
+        <div class="menu-name">Avocado Choco Dream</div>
+        <p class="menu-desc">Avocado, Dark Chocolate Powder, Milk · 500ml | 239 cal</p>
+        <span class="menu-price">Rp19.000</span>
+      </div>
+      <div class="menu-card reveal">
+        <span class="menu-emoji">☕</span>
+        <div class="menu-name">Avocoffee</div>
+        <p class="menu-desc">Avocado, Coffee, Dark Chocolate, Milk · 500ml | 207 cal</p>
+        <span class="menu-price">Rp21.000</span>
+      </div>
+      <div class="menu-card reveal">
+        <span class="menu-emoji">🌅</span>
+        <div class="menu-name">Drama Queen</div>
+        <p class="menu-desc">Dragonfruit, Mango, Milk, Yogurt · 500ml | 181 cal</p>
+        <span class="menu-price">Rp19.000</span>
+      </div>
+      <div class="menu-card reveal">
+        <span class="menu-emoji">🍹</span>
+        <div class="menu-name">Pinego</div>
+        <p class="menu-desc">Pineapple, Mango, Milk, Yogurt · 500ml | 181 cal</p>
+        <span class="menu-price">Rp18.000</span>
+      </div>
+      <div class="menu-card reveal">
+        <span class="menu-emoji">🥭</span>
+        <div class="menu-name">Maberry Delight</div>
+        <p class="menu-desc">Mango, Strawberry, Milk, Yogurt · 500ml | 168 cal</p>
+        <span class="menu-price">Rp20.000</span>
+      </div>
+    </div>
+
+    <!-- IN BOWL -->
+    <div id="tab-bowl" class="menu-grid tab-content" style="display:none">
+      <div class="menu-card reveal">
+        <span class="menu-emoji">💜</span>
+        <div class="menu-name">Purple Harmony in Bowl</div>
+        <p class="menu-desc">Dragonfruit, Banana, Strawberry, Milk, Yogurt · 350ml | 240 cal</p>
+        <span class="menu-price">Rp21.000</span>
+      </div>
+      <div class="menu-card reveal">
+        <span class="menu-emoji">🌴</span>
+        <div class="menu-name">Summer Paradise</div>
+        <p class="menu-desc">Mango, Banana, Pineapple, Milk, Yogurt · 350ml | 262 cal</p>
+        <span class="menu-price">Rp20.000</span>
+      </div>
+      <div class="menu-card reveal">
+        <span class="menu-emoji">🍑</span>
+        <div class="menu-name">The Peaches</div>
+        <p class="menu-desc">Mango, Banana, Strawberry, Milk, Yogurt · 350ml | 250 cal</p>
+        <span class="menu-price">Rp22.000</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERI MENU -->
+<section id="galeri-menu" style="background: var(--green-pale); padding: 5rem 2rem;">
+  <div class="container">
+    <p class="section-label reveal">✦ Menu Asli</p>
+    <h2 class="section-title reveal">Lihat Menu<br>Lengkap Kami</h2>
+    <p class="section-sub reveal">Semua dibuat segar, stevia only, tanpa pengawet.</p>
+    <div class="galeri-grid reveal">
+      <div class="galeri-card">
+        <div class="galeri-label">🥣 Menu In Bowl</div>
+        <img src="menu-bowl.png" alt="Menu In Bowl Sothies" loading="lazy">
+      </div>
+      <div class="galeri-card">
+        <div class="galeri-label">🥤 Menu In Cup (1)</div>
+        <img src="menu-cup-1.png" alt="Menu In Cup Sothies 1" loading="lazy">
+      </div>
+      <div class="galeri-card">
+        <div class="galeri-label">🥤 Menu In Cup (2)</div>
+        <img src="menu-cup-2.png" alt="Menu In Cup Sothies 2" loading="lazy">
+      </div>
+      <div class="galeri-card">
+        <div class="galeri-label">🥤 Menu In Cup (3)</div>
+        <img src="menu-cup-3.png" alt="Menu In Cup Sothies 3" loading="lazy">
       </div>
     </div>
   </div>
@@ -592,6 +751,14 @@
 </footer>
 
 <script>
+  // Tab switching
+  function switchTab(tab, btn) {
+    document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + tab).style.display = 'grid';
+    btn.classList.add('active');
+  }
+
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
